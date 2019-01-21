@@ -18,11 +18,11 @@ public class RestUtilityAsyncTask {
 
 
     private static AsyncHttpClient client = new AsyncHttpClient();
-    private static String BASE_URL = "https://provrest-7684c.firebaseio.com/";
+
 
     public static void get(String url, RequestParams params) {
 
-        client.get(getAbsoluteUrl(url), params, new JsonHttpResponseHandler() {
+        client.get(url, params, new JsonHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
@@ -49,7 +49,7 @@ public class RestUtilityAsyncTask {
 
     public static void post(String url, RequestParams params) {
 
-        client.post(getAbsoluteUrl(url),params, new JsonHttpResponseHandler(){
+        client.post(url,params, new JsonHttpResponseHandler(){
 
             public void onSuccess(int statusCode, Header[] headers, final JSONObject response) {
                 JSONArray array = response.names();
@@ -72,11 +72,6 @@ public class RestUtilityAsyncTask {
 
         });
     }
-
-    private static String getAbsoluteUrl(String relativeUrl) {
-        return BASE_URL + relativeUrl + ".json";
-    }
-
 
 }
 
